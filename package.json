@@ -1,0 +1,18 @@
+{
+  "name": "yt-node-api",
+  "version": "1.0.0",
+  "description": "Node api for getting download links of audio files from youtube video link.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kritish Dhaubanjar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fluent-ffmpeg": "^2.1.2",
+    "request": "^2.88.0",
+    "youtube-mp3-downloader": "^0.5.3",
+    "ytdl-core": "^0.29.3"
+  }
+}
