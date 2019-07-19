@@ -7,6 +7,7 @@ const app = express();
 
 app.get("/:id", (req, res, next) => {
   let id = req.params.id;
+  console.log(id);
 
   let stream = ytdl(id, {
     quality: "highestaudio"
