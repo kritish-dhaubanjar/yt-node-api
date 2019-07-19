@@ -16,6 +16,9 @@ app.get("/:id", (req, res, next) => {
   ffmpeg(stream)
     .withNoVideo()
     .format("mp3")
+    .on("error", function(err, stdout, stderr) {
+      console.log(err.message);
+    })
     .pipe(
       res,
       { end: true }
