@@ -21,6 +21,6 @@ app.get("/:id", (req, res, next) => {
     );
 });
 
-app.listen(8000, () => {
+app.listen(80, () => {
   console.log("Server listening @ 8000");
 });
