@@ -1,28 +1,19 @@
 const express = require("express");
-const ytdl = require("ytdl-core");
-const ffmpeg = require("fluent-ffmpeg");
-const fs = require("fs");
 
 const app = express();
 
+const youtubeStream = require('youtube-audio-stream')
+
 app.get("/:id", (req, res, next) => {
-  let id = req.params.id;
-  console.log(id);
+    let id = req.params.id;
 
-  let stream = ytdl(id, {
-    quality: "highestaudio"
-  });
+    const requestUrl = 'http://youtube.com/watch?v=' + req.params.id
+    try {
+        youtubeStream(requestUrl).pipe(res)
+    } catch (exception) {
+        res.status(500).send(exception)
+    }
 
-  ffmpeg(stream)
-    .withNoVideo()
-    .format("mp3")
-    .on("error", function(err, stdout, stderr) {
-      console.log(err.message);
-    })
-    .pipe(
-      res,
-      { end: true }
-    );
 });
 
 //use alternate localhost and the port Heroku assigns to $PORT
@@ -30,5 +21,5 @@ const host = "0.0.0.0";
 const port = process.env.PORT || 8085;
 
 app.listen(port, host, () => {
-  console.log("Server listening @" + port);
+    console.log("Server listening @" + port);
 });
